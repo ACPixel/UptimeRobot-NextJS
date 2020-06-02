@@ -8,8 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "form-data": "^3.0.0",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-trend": "^1.2.5"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "autoprefixer": "^9.8.0",
+    "tailwindcss": "^1.4.6"
   }
 }
