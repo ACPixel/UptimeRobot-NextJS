@@ -5,9 +5,9 @@ export default function Status({ name, code, uptime, responseTime }) {
   return (
     <div
       className="rounded-sm bg-gray-700 m-4 p-4 relative"
-      style={{ width: "32rem", height: "20rem" }}
+      style={{ width: "24rem", height: "16rem" }}
     >
-      <h1 className="text-3xl font-bold text-blue-200">{name}</h1>
+      <h1 className="text-2xl font-bold text-blue-200">{name}</h1>
       <div
         className="m-4 absolute top-0 right-0 rounded-full w-4 h-4"
         style={{
@@ -21,7 +21,7 @@ export default function Status({ name, code, uptime, responseTime }) {
               : "#cd43b3",
         }}
       />
-      <div className="text-xl mb-4">
+      <div className="text-lg mb-2">
         Current status:{" "}
         <span className="text-blue-400">
           {code === 2
@@ -48,7 +48,7 @@ export default function Status({ name, code, uptime, responseTime }) {
         over <span className="text-blue-400">30</span> days
       </div>
 
-      <div className="mt-4">Average Response Times:</div>
+      <div className="mt-2">Average Response Times:</div>
       <div className="w-full">
         <Trend
           smooth
