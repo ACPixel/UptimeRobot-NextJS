@@ -13,7 +13,10 @@ function Home({ monitors }) {
   const status =
     m.filter((a) => a.status !== 2).length > 0
       ? { m: "Minor Outage", c: "#f5d5be" }
-      : { m: "All Systems Fully Operational", c: "#47cbac" };
+      : {
+          m: `All Systems Fully Operational (${m.length}/${m.length})`,
+          c: "#47cbac",
+        };
   return (
     <div>
       <Head>
