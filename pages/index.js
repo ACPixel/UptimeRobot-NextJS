@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Status from "../components/status";
 import { useEffect } from "react";
+import { uptimeRobotToken } from "../config";
 
 function Home({ monitors }) {
   useEffect(() => {
@@ -55,7 +56,7 @@ function Home({ monitors }) {
 Home.getInitialProps = async () => {
   let out = {};
   let urlencoded = new URLSearchParams();
-  urlencoded.append("api_key", "ur899712-6058a7b7cacc84540a172c95");
+  urlencoded.append("api_key", uptimeRobotToken);
   urlencoded.append("response_times", "1");
   urlencoded.append("custom_uptime_ratios", "7-30");
   let monitors = await fetch(`https://api.uptimerobot.com/v2/getMonitors`, {
