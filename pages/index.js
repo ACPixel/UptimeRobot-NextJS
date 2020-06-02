@@ -14,7 +14,7 @@ function Home({ monitors }) {
       ? { m: "Minor Outage", c: "#f5d5be" }
       : { m: "All Systems Fully Operational", c: "#47cbac" };
   return (
-    <div className="container">
+    <div>
       <Head>
         <title>Pixel Chat Status</title>
         <link rel="icon" href="/favicon.ico" />
