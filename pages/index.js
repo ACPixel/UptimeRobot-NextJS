@@ -43,6 +43,10 @@ function Home({ monitors }) {
             />
           ))}
         </div>
+        <div className="text-center w-full">
+          This page shows the status of all sites & services created by Pixel
+          Dev LLC
+        </div>
       </div>
     </div>
   );
