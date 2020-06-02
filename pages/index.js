@@ -23,7 +23,7 @@ function Home({ monitors }) {
         <meta property="og:url" content="https://status.pixelchat.tv" />
         <meta property="og:type" content="website" />
       </Head>
-      <div className="w-screen h-screen bg-gray-900 text-white p-4">
+      <div className="w-screen min-h-screen bg-gray-900 text-white p-4">
         <div className="w-full flex justify-center">
           <div
             className="rounded-sm shadow-sm px-4 py-2 text-lg mb-6"
