@@ -1,7 +1,13 @@
 import Head from "next/head";
 import Status from "../components/status";
+import { useEffect } from "react";
 
 function Home({ monitors }) {
+  useEffect(() => {
+    setTimeout(() => {
+      location.reload();
+    }, 60000);
+  }, []);
   const m = monitors.monitors;
   const status =
     m.filter((a) => a.status !== 2).length > 0
