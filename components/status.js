@@ -54,7 +54,9 @@ export default function Status({ name, code, uptime, responseTime }) {
           smooth
           autoDraw
           autoDrawDuration={3000}
-          data={responseTime.map((a) => a.value)}
+          data={
+            responseTime.length > 1 ? responseTime.map((a) => a.value) : [0, 0]
+          }
           gradient={["#47cbac", "#47cbac", "#f5d5be", "#cd43b3"]}
           strokeWidth={2}
           strokeLinecap={"round"}

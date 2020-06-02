@@ -18,6 +18,10 @@ function Home({ monitors }) {
       <Head>
         <title>Pixel Chat Status</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content={"Pixel Chat Status"} />
+        <meta property="og:description" content={status} />
+        <meta property="og:url" content="https://status.pixelchat.tv" />
+        <meta property="og:type" content="website" />
       </Head>
       <div className="w-screen h-screen bg-gray-900 text-white p-4">
         <div className="w-full flex justify-center">
