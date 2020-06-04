@@ -26,9 +26,7 @@ function Home({ title, monitorsSSR }) {
         .then((json) => {
           setMonitors(json);
         })
-        .catch(() => {
-          setError("Failed to fetch service statuses. Please try again later.");
-        });
+        .catch(() => {});
     }, 300000);
   }, []);
   const m = !error ? monitors : [];
