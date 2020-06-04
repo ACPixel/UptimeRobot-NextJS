@@ -4,19 +4,22 @@ import Error from "next/error";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 
-function Home({ title }) {
+function Home({ title, monitorsSSR }) {
   const [error, setError] = useState(false);
-  const [monitors, setMonitors] = useState([]);
+  const [monitors, setMonitors] = useState(monitorsSSR ? monitorsSSR : []);
 
   useEffect(() => {
-    fetch("/api")
-      .then((data) => data.json())
-      .then((json) => {
-        setMonitors(json);
-      })
-      .catch(() => {
-        setError("Failed to fetch service statuses. Please try again later.");
-      });
+    if (monitors.length === 0) {
+      fetch("/api")
+        .then((data) => data.json())
+        .then((json) => {
+          setMonitors(json);
+        })
+        .catch(() => {
+          setError("Failed to fetch service statuses. Please try again later.");
+        });
+    }
+
     setInterval(() => {
       fetch("/api")
         .then((data) => data.json())
@@ -84,15 +87,19 @@ function Home({ title }) {
 
 Home.getInitialProps = async ({ req }) => {
   if (req) {
-    let data = await Axios.get(
-      `${req.secure ? "https" : "http"}://${req.headers.host}/api`
-    );
-    let m = data.data;
-    let title =
-      m.filter((a) => a.status !== 2).length > 0
-        ? "Minor Outage"
-        : `All Systems Fully Operational (${m.length}/${m.length})`;
-    return { title };
+    try {
+      let data = await Axios.get(
+        `${req.secure ? "https" : "http"}://${req.headers.host}/api`
+      );
+      let m = data.data;
+      let title =
+        m.filter((a) => a.status !== 2).length > 0
+          ? "Minor Outage"
+          : `All Systems Fully Operational (${m.length}/${m.length})`;
+      return { title, monitorsSSR: m };
+    } catch {
+      return;
+    }
   } else {
     return;
   }

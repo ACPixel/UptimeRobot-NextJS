@@ -7,22 +7,26 @@ export default async (req: NowRequest, res: NowResponse) => {
   urlencoded.append("api_key", uptimeRobotToken);
   urlencoded.append("response_times", "1");
   urlencoded.append("custom_uptime_ratios", "7-30");
-  let monitors = await Axios.post(
-    `https://api.uptimerobot.com/v2/getMonitors`,
-    urlencoded,
-    {
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-        "cache-control": "no-cache",
-      },
-    }
-  );
-  let m = monitors.data.monitors;
+  try {
+    let monitors = await Axios.post(
+      `https://api.uptimerobot.com/v2/getMonitors`,
+      urlencoded,
+      {
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "cache-control": "no-cache",
+        },
+      }
+    );
+    let m = monitors.data.monitors;
 
-  for (let i in m) {
-    if (m[i].url !== undefined) {
-      delete m[i].url;
+    for (let i in m) {
+      if (m[i].url !== undefined) {
+        delete m[i].url;
+      }
     }
+    res.json(m);
+  } catch {
+    res.status(500).send("Error");
   }
-  res.json(m);
 };
