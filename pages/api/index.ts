@@ -7,6 +7,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   urlencoded.append("api_key", uptimeRobotToken);
   urlencoded.append("response_times", "1");
   urlencoded.append("custom_uptime_ratios", "7-30");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     let monitors = await Axios.post(
       `https://api.uptimerobot.com/v2/getMonitors`,
