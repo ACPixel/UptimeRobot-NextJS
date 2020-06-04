@@ -48,7 +48,18 @@ export default function Status({ name, code, uptime, responseTime }) {
         over <span className="text-blue-400">30</span> days
       </div>
 
-      <div className="mt-2">Average Response Times:</div>
+      <div className="mt-2">
+        Average Response Time:{" "}
+        <span className="text-blue-400">
+          {responseTime.length > 1
+            ? (
+                responseTime.map((a) => a.value).reduce((a, b) => a + b) /
+                responseTime.length
+              ).toFixed(0)
+            : 0}
+          ms
+        </span>
+      </div>
       <div className="w-full">
         <Trend
           smooth
