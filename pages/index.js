@@ -2,8 +2,9 @@ import Head from "next/head";
 import Status from "../components/status";
 import Error from "next/error";
 import { useEffect, useState } from "react";
+import Axios from "axios";
 
-function Home() {
+function Home({ title }) {
   const [error, setError] = useState(false);
   const [monitors, setMonitors] = useState([]);
 
@@ -41,7 +42,10 @@ function Home() {
         <title>Pixel Chat Status</title>
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={"Pixel Chat Status"} />
-        <meta property="og:description" content={status.m} />
+        <meta
+          property="og:description"
+          content={title ? title : "Check the status of Pixel Chat services."}
+        />
         <meta property="og:url" content="https://status.pixelchat.tv" />
         <meta property="og:type" content="website" />
       </Head>
@@ -77,4 +81,20 @@ function Home() {
     </div>
   );
 }
+
+Home.getInitialProps = async ({ req }) => {
+  if (req) {
+    let data = await Axios.get(
+      `${req.secure ? "https" : "http"}://${req.headers.host}/api`
+    );
+    let m = data.data;
+    let title =
+      m.filter((a) => a.status !== 2).length > 0
+        ? "Minor Outage"
+        : `All Systems Fully Operational (${m.length}/${m.length})`;
+    return { title };
+  } else {
+    return;
+  }
+};
 export default Home;
