@@ -75,7 +75,18 @@ function Home({ title, monitorsSSR }) {
           </div>
           <div className="text-center w-full">
             This page shows the status of all sites & services created by Pixel
-            Dev LLC
+            Dev LLC.
+          </div>
+          <div className="text-center w-full">
+            This status page is 100% open source{" "}
+            <a
+              href="https://github.com/ACPixel/UptimeRobot-NextJS"
+              target="_blank"
+              className="text-blue-300"
+            >
+              here
+            </a>{" "}
+            if you would like to make your own. Made with ❤ by Pixel Dev LLC.
           </div>
         </div>
       ) : (
