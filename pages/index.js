@@ -51,7 +51,7 @@ function Home({ title, monitorsSSR }) {
         <meta property="og:type" content="website" />
       </Head>
       {!error ? (
-        <div className="w-screen min-h-screen bg-gray-900 text-white p-4">
+        <div className="w-screen min-h-screen bg-gray-900 text-white">
           <div className="w-full flex justify-center">
             <div
               className="rounded-sm shadow-sm px-4 py-2 text-lg mb-6 font-semibold"
